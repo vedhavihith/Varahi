@@ -187,14 +187,14 @@ def init_db():
             
             # Spare Parts
             ('NGK Spark Plug CR7HSA', 'Spare Parts', 'NGK', 'Standard spark plug for Hero, Honda, and TVS 2-wheelers.', '₹120', 1, 'ngk_plug.png'),
-            ('Brake Shoe Set (Front/Rear)', 'Spare Parts', 'Genuine', 'OEM quality brake shoes for Hero Splendor/Passion and Honda Activa.', '₹250', 1, None),
-            ('Engine Air Filter Element', 'Spare Parts', 'Genuine', 'High filtration air filter compatible with Hero Splendor and Passion.', '₹180', 1, None),
-            ('Chain Sprocket Kit', 'Spare Parts', 'Genuine', 'Complete heavy duty chain & sprocket kit for 100cc-125cc motorcycles.', '₹850', 1, None),
-            ('Clutch Plate Set', 'Spare Parts', 'Genuine', 'Heavy duty clutch plates for smooth gear shifts and power transfer.', '₹650', 1, None),
+            ('Brake Shoe Set (Front/Rear)', 'Spare Parts', 'Genuine', 'OEM quality brake shoes for Hero Splendor/Passion and Honda Activa.', '₹250', 1, 'brake_shoes.jpg'),
+            ('Engine Air Filter Element', 'Spare Parts', 'Genuine', 'High filtration air filter compatible with Hero Splendor and Passion.', '₹180', 1, 'air_filter.png'),
+            ('Chain Sprocket Kit', 'Spare Parts', 'Genuine', 'Complete heavy duty chain & sprocket kit for 100cc-125cc motorcycles.', '₹850', 1, 'chain_sprocket.jpg'),
+            ('Clutch Plate Set', 'Spare Parts', 'Genuine', 'Heavy duty clutch plates for smooth gear shifts and power transfer.', '₹650', 1, 'clutch_plates.png'),
             
             # Electrical
-            ('Osram Headlight Bulb 12V 35/35W', 'Electrical', 'Osram', 'Standard high-brightness headlight bulb for all two-wheelers.', '₹80', 1, None),
-            ('Indicator Bulb Set (4 Pcs)', 'Electrical', 'Genuine', 'Front & rear orange indicator bulbs for Hero and Honda bikes.', '₹60', 1, None),
+            ('Osram Headlight Bulb 12V 35/35W', 'Electrical', 'Osram', 'Standard high-brightness headlight bulb for all two-wheelers.', '₹80', 1, 'headlight_bulb.png'),
+            ('Indicator Bulb Set (4 Pcs)', 'Electrical', 'Genuine', 'Front & rear orange indicator bulbs for Hero and Honda bikes.', '₹60', 1, 'indicator_bulbs.png'),
             
             # Batteries
             ('Exide Xplore 12V 5Ah Battery', 'Batteries', 'Exide', 'Maintenance-free VRLA battery for self-start bikes and scooters.', '₹1,850', 1, 'exide_battery.png'),
@@ -205,9 +205,9 @@ def init_db():
             ('CEAT Zoom 90/90-10', 'Tyres', 'CEAT', 'High grip tubeless scooter tyre compatible with Honda Activa and TVS Jupiter.', '₹1,200', 1, 'ceat_tyre.png'),
             
             # Accessories
-            ('Handlebar Grip Set', 'Accessories', 'Generic', 'Comfortable anti-slip rubber handlebar grips for all bikes.', '₹120', 1, None),
-            ('Side Mirror Pair (Universal)', 'Accessories', 'Generic', 'Universal clear side mirrors with adjustable mounting brackets.', '₹220', 1, None),
-            ('Waterproof Bike Cover', 'Accessories', 'Generic', 'Full size waterproof and dustproof protective bike cover.', '₹350', 1, None),
+            ('Handlebar Grip Set', 'Accessories', 'Generic', 'Comfortable anti-slip rubber handlebar grips for all bikes.', '₹120', 1, 'handlebar_grips.jpg'),
+            ('Side Mirror Pair (Universal)', 'Accessories', 'Generic', 'Universal clear side mirrors with adjustable mounting brackets.', '₹220', 1, 'side_mirrors.png'),
+            ('Waterproof Bike Cover', 'Accessories', 'Generic', 'Full size waterproof and dustproof protective bike cover.', '₹350', 1, 'bike_cover.png'),
         ]
         c.executemany(
             "INSERT INTO products (name, category, brand, description, price, available, image_url) VALUES (?,?,?,?,?,?,?)",
