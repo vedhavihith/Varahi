@@ -175,26 +175,26 @@ def init_db():
             ('Castrol Power 1 Scooter 10W-30 800ml', 'Lubricants', 'Castrol', 'Specially formulated synthetic technology oil for scooters.', '₹380', 1, 'castrol_scooter.png'),
             ('Motul 7100 4T 10W-50 Synthetic Oil 1L', 'Lubricants', 'Motul', '100% synthetic double ester engine oil for high performance bikes.', '₹850', 1, 'motul_7100.png'),
             ('Gulf Pride 4T 20W-40 1L', 'Lubricants', 'Gulf', 'High quality mineral engine oil for everyday commuter bikes.', '₹320', 1, 'gulf_oil.png'),
-            ('Gulf Gear Oil 80W-90 500ml', 'Lubricants', 'Gulf', 'Premium gear oil for smooth gear shifting and transmission protection.', '₹180', 1, None),
+            ('Gulf Gear Oil 80W-90 500ml', 'Lubricants', 'Gulf', 'Premium gear oil for smooth gear shifting and transmission protection.', '₹180', 1, 'gulf_gear.png'),
             
             # Wires and Cables
-            ('Front Brake Cable / Wire (Hero Splendor)', 'Spare Parts', 'Genuine', 'High-tensile front brake wire for Hero Splendor, Passion, and HF Deluxe.', '₹90', 1, None),
-            ('Rear Brake Cable / Wire (Honda Activa)', 'Spare Parts', 'Genuine', 'OEM quality rear brake wire/cable for Honda Activa 3G/4G/5G/6G.', '₹120', 1, None),
-            ('Front Brake Cable / Wire (TVS Jupiter)', 'Spare Parts', 'Genuine', 'Genuine front brake cable for TVS Jupiter and Wego scooters.', '₹110', 1, None),
-            ('Accelerator Cable / Throttle Wire (Bajaj Pulsar)', 'Spare Parts', 'Genuine', 'Flexible throttle/accelerator cable set for Bajaj Pulsar 150/180.', '₹130', 1, None),
-            ('Clutch Cable / Wire (Hero Passion Pro)', 'Spare Parts', 'Genuine', 'Heavy duty replacement clutch cable for Hero Passion Pro.', '₹110', 1, None),
+            ('Front Brake Cable / Wire (Hero Splendor)', 'Spare Parts', 'Genuine', 'High-tensile front brake wire for Hero Splendor, Passion, and HF Deluxe.', '₹90', 1, 'splendor_brake_cable.png'),
+            ('Rear Brake Cable / Wire (Honda Activa)', 'Spare Parts', 'Genuine', 'OEM quality rear brake wire/cable for Honda Activa 3G/4G/5G/6G.', '₹120', 1, 'activa_brake_cable.png'),
+            ('Front Brake Cable / Wire (TVS Jupiter)', 'Spare Parts', 'Genuine', 'Genuine front brake cable for TVS Jupiter and Wego scooters.', '₹110', 1, 'jupiter_brake_cable.png'),
+            ('Accelerator Cable / Throttle Wire (Bajaj Pulsar)', 'Spare Parts', 'Genuine', 'Flexible throttle/accelerator cable set for Bajaj Pulsar 150/180.', '₹130', 1, 'pulsar_throttle_cable.png'),
+            ('Clutch Cable / Wire (Hero Passion Pro)', 'Spare Parts', 'Genuine', 'Heavy duty replacement clutch cable for Hero Passion Pro.', '₹110', 1, 'passion_clutch_cable.png'),
             ('Clutch Cable / Wire (Bajaj Pulsar 150)', 'Spare Parts', 'Genuine', 'High durability clutch wire/cable for Bajaj Pulsar 150.', '₹140', 1, 'pulsar_cable.png'),
             
             # Spare Parts
             ('NGK Spark Plug CR7HSA', 'Spare Parts', 'NGK', 'Standard spark plug for Hero, Honda, and TVS 2-wheelers.', '₹120', 1, 'ngk_plug.png'),
-            ('Brake Shoe Set (Front/Rear)', 'Spare Parts', 'Genuine', 'OEM quality brake shoes for Hero Splendor/Passion and Honda Activa.', '₹250', 1, None),
-            ('Engine Air Filter Element', 'Spare Parts', 'Genuine', 'High filtration air filter compatible with Hero Splendor and Passion.', '₹180', 1, None),
-            ('Chain Sprocket Kit', 'Spare Parts', 'Genuine', 'Complete heavy duty chain & sprocket kit for 100cc-125cc motorcycles.', '₹850', 1, None),
-            ('Clutch Plate Set', 'Spare Parts', 'Genuine', 'Heavy duty clutch plates for smooth gear shifts and power transfer.', '₹650', 1, None),
+            ('Brake Shoe Set (Front/Rear)', 'Spare Parts', 'Genuine', 'OEM quality brake shoes for Hero Splendor/Passion and Honda Activa.', '₹250', 1, 'brake_shoes.png'),
+            ('Engine Air Filter Element', 'Spare Parts', 'Genuine', 'High filtration air filter compatible with Hero Splendor and Passion.', '₹180', 1, 'air_filter.png'),
+            ('Chain Sprocket Kit', 'Spare Parts', 'Genuine', 'Complete heavy duty chain & sprocket kit for 100cc-125cc motorcycles.', '₹850', 1, 'chain_sprocket.png'),
+            ('Clutch Plate Set', 'Spare Parts', 'Genuine', 'Heavy duty clutch plates for smooth gear shifts and power transfer.', '₹650', 1, 'clutch_plates.png'),
             
             # Electrical
-            ('Osram Headlight Bulb 12V 35/35W', 'Electrical', 'Osram', 'Standard high-brightness headlight bulb for all two-wheelers.', '₹80', 1, None),
-            ('Indicator Bulb Set (4 Pcs)', 'Electrical', 'Genuine', 'Front & rear orange indicator bulbs for Hero and Honda bikes.', '₹60', 1, None),
+            ('Osram Headlight Bulb 12V 35/35W', 'Electrical', 'Osram', 'Standard high-brightness headlight bulb for all two-wheelers.', '₹80', 1, 'headlight_bulb.png'),
+            ('Indicator Bulb Set (4 Pcs)', 'Electrical', 'Genuine', 'Front & rear orange indicator bulbs for Hero and Honda bikes.', '₹60', 1, 'indicator_bulbs.png'),
             
             # Batteries
             ('Exide Xplore 12V 5Ah Battery', 'Batteries', 'Exide', 'Maintenance-free VRLA battery for self-start bikes and scooters.', '₹1,850', 1, 'exide_battery.png'),
@@ -205,9 +205,9 @@ def init_db():
             ('CEAT Zoom 90/90-10', 'Tyres', 'CEAT', 'High grip tubeless scooter tyre compatible with Honda Activa and TVS Jupiter.', '₹1,200', 1, 'ceat_tyre.png'),
             
             # Accessories
-            ('Handlebar Grip Set', 'Accessories', 'Generic', 'Comfortable anti-slip rubber handlebar grips for all bikes.', '₹120', 1, None),
-            ('Side Mirror Pair (Universal)', 'Accessories', 'Generic', 'Universal clear side mirrors with adjustable mounting brackets.', '₹220', 1, None),
-            ('Waterproof Bike Cover', 'Accessories', 'Generic', 'Full size waterproof and dustproof protective bike cover.', '₹350', 1, None),
+            ('Handlebar Grip Set', 'Accessories', 'Generic', 'Comfortable anti-slip rubber handlebar grips for all bikes.', '₹120', 1, 'handlebar_grips.png'),
+            ('Side Mirror Pair (Universal)', 'Accessories', 'Generic', 'Universal clear side mirrors with adjustable mounting brackets.', '₹220', 1, 'side_mirrors.png'),
+            ('Waterproof Bike Cover', 'Accessories', 'Generic', 'Full size waterproof and dustproof protective bike cover.', '₹350', 1, 'bike_cover.png'),
         ]
         c.executemany(
             "INSERT INTO products (name, category, brand, description, price, available, image_url) VALUES (?,?,?,?,?,?,?)",
