@@ -171,10 +171,10 @@ def init_db():
         sample_products = [
             # Lubricants
             ('Castrol Activ 4T Engine Oil 1L', 'Lubricants', 'Castrol', 'High performance 4T engine oil for bikes with Actibond molecules.', '₹350', 1, 'castrol_oil.png'),
-            ('Motul 3000 4T 20W-40 Engine Oil', 'Lubricants', 'Motul', 'Mineral engine oil for 4-stroke motorcycles, excellent wet-clutch performance.', '₹420', 1, None),
-            ('Castrol Power 1 Scooter 10W-30 800ml', 'Lubricants', 'Castrol', 'Specially formulated synthetic technology oil for scooters.', '₹380', 1, None),
-            ('Motul 7100 4T 10W-50 Synthetic Oil 1L', 'Lubricants', 'Motul', '100% synthetic double ester engine oil for high performance bikes.', '₹850', 1, None),
-            ('Gulf Pride 4T 20W-40 1L', 'Lubricants', 'Gulf', 'High quality mineral engine oil for everyday commuter bikes.', '₹320', 1, None),
+            ('Motul 3000 4T 20W-40 Engine Oil', 'Lubricants', 'Motul', 'Mineral engine oil for 4-stroke motorcycles, excellent wet-clutch performance.', '₹420', 1, 'motul_3000.png'),
+            ('Castrol Power 1 Scooter 10W-30 800ml', 'Lubricants', 'Castrol', 'Specially formulated synthetic technology oil for scooters.', '₹380', 1, 'castrol_scooter.png'),
+            ('Motul 7100 4T 10W-50 Synthetic Oil 1L', 'Lubricants', 'Motul', '100% synthetic double ester engine oil for high performance bikes.', '₹850', 1, 'motul_7100.png'),
+            ('Gulf Pride 4T 20W-40 1L', 'Lubricants', 'Gulf', 'High quality mineral engine oil for everyday commuter bikes.', '₹320', 1, 'gulf_oil.png'),
             ('Gulf Gear Oil 80W-90 500ml', 'Lubricants', 'Gulf', 'Premium gear oil for smooth gear shifting and transmission protection.', '₹180', 1, None),
             
             # Wires and Cables
@@ -186,7 +186,7 @@ def init_db():
             ('Clutch Cable / Wire (Bajaj Pulsar 150)', 'Spare Parts', 'Genuine', 'High durability clutch wire/cable for Bajaj Pulsar 150.', '₹140', 1, 'pulsar_cable.png'),
             
             # Spare Parts
-            ('NGK Spark Plug CR7HSA', 'Spare Parts', 'NGK', 'Standard spark plug for Hero, Honda, and TVS 2-wheelers.', '₹120', 1, None),
+            ('NGK Spark Plug CR7HSA', 'Spare Parts', 'NGK', 'Standard spark plug for Hero, Honda, and TVS 2-wheelers.', '₹120', 1, 'ngk_plug.png'),
             ('Brake Shoe Set (Front/Rear)', 'Spare Parts', 'Genuine', 'OEM quality brake shoes for Hero Splendor/Passion and Honda Activa.', '₹250', 1, None),
             ('Engine Air Filter Element', 'Spare Parts', 'Genuine', 'High filtration air filter compatible with Hero Splendor and Passion.', '₹180', 1, None),
             ('Chain Sprocket Kit', 'Spare Parts', 'Genuine', 'Complete heavy duty chain & sprocket kit for 100cc-125cc motorcycles.', '₹850', 1, None),
@@ -198,11 +198,11 @@ def init_db():
             
             # Batteries
             ('Exide Xplore 12V 5Ah Battery', 'Batteries', 'Exide', 'Maintenance-free VRLA battery for self-start bikes and scooters.', '₹1,850', 1, 'exide_battery.png'),
-            ('Amaron Pro Rider 12V 5Ah', 'Batteries', 'Amaron', 'High cranking power maintenance-free battery for two-wheelers.', '₹1,950', 1, None),
+            ('Amaron Pro Rider 12V 5Ah', 'Batteries', 'Amaron', 'High cranking power maintenance-free battery for two-wheelers.', '₹1,950', 1, 'amaron_battery.png'),
             
             # Tyres
             ('MRF Nylogrip Zapper 90/90-17', 'Tyres', 'MRF', 'Tubeless rear motorcycle tyre, offering excellent wet and dry grip.', '₹1,400', 1, 'mrf_tyre.png'),
-            ('CEAT Zoom 90/90-10', 'Tyres', 'CEAT', 'High grip tubeless scooter tyre compatible with Honda Activa and TVS Jupiter.', '₹1,200', 1, None),
+            ('CEAT Zoom 90/90-10', 'Tyres', 'CEAT', 'High grip tubeless scooter tyre compatible with Honda Activa and TVS Jupiter.', '₹1,200', 1, 'ceat_tyre.png'),
             
             # Accessories
             ('Handlebar Grip Set', 'Accessories', 'Generic', 'Comfortable anti-slip rubber handlebar grips for all bikes.', '₹120', 1, None),
