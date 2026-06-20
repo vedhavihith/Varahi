@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% from 'products.html' import category_icon %}
+{% block title %}{{ brand['name'] }} Parts & Information – Varahi Automotives{% endblock %}
+{% block content %}
+
+<!-- BRAND HEADER -->
+<div class="products-header" style="background: linear-gradient(135deg, var(--red-dark) 0%, #a81c15 100%); padding: 60px 0;">
+  <div class="container">
+    <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+      <div style="flex: 2; min-width: 300px;">
+        <div class="section-eyebrow" style="color: rgba(255,255,255,0.85); margin-bottom: 8px; font-weight: 600; letter-spacing: 2px;">
+          {{ brand['type'] }}
+        </div>
+        <h1 style="font-size: 2.8rem; margin-bottom: 12px; color: #fff;">{{ brand['name'] }}</h1>
+        <p style="font-size: 1.1rem; opacity: 0.95; line-height: 1.6; margin-bottom: 18px; font-weight: 500;">
+          {{ brand['desc'] }}
+        </p>
+        <p style="font-size: 0.92rem; opacity: 0.8; line-height: 1.7; text-align: justify;">
+          {{ brand['details'] }}
+        </p>
+      </div>
+      <div style="flex: 1; min-width: 250px; display: flex; justify-content: center;">
+        {% if brand['logo'] %}
+        <div style="background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: var(--shadow-lg); width: 100%; max-width: 240px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="{{ url_for('static', filename='images/' + brand['logo']) }}" alt="{{ brand['name'] }}" style="height: 80px; object-fit: contain; width: 100%;">
+          <div style="margin-top: 14px; font-size: 0.75rem; color: var(--steel-light); font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">
+            Genuine Parts Dealer
+          </div>
+        </div>
+        {% else %}
+        <div style="background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%); border: 2px dashed rgba(255,255,255,0.25); border-radius: 12px; padding: 40px 24px; width: 100%; max-width: 240px; text-align: center; backdrop-filter: blur(8px);">
+          <div style="font-family: 'Oswald', sans-serif; font-size: 2.2rem; font-weight: 700; color: #FFD700; letter-spacing: 2px; text-transform: uppercase; line-height: 1;">
+            {{ brand['name'] }}
+          </div>
+          <div style="margin-top: 14px; font-size: 0.75rem; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">
+            Certified Stockist
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="container filter-inner">
+    <form method="get" style="display:flex; gap:10px; flex:1; flex-wrap:wrap; align-items:center;">
+      <input type="text" name="search" placeholder="🔍 Search parts inside {{ brand['name'] }}..." value="{{ search }}">
+      <a href="{{ url_for('brand_detail', brand_name=brand_key) }}" class="cat-filter-btn {% if not selected_cat %}active{% endif %}">All Categories</a>
+      {% for cat in categories %}
+      <a href="{{ url_for('brand_detail', brand_name=brand_key, category=cat) }}" 
+         class="cat-filter-btn {% if selected_cat==cat %}active{% endif %}">
+        {{ cat }}
+      </a>
+      {% endfor %}
+      {% if search %}<button type="submit" class="btn btn-red" style="padding:8px 16px; font-size:0.85rem;">Search</button>{% endif %}
+    </form>
+    <span class="products-count">{{ products|length }} item{% if products|length != 1 %}s{% endif %} found</span>
+  </div>
+</div>
+
+<!-- PRODUCTS LIST -->
+<section class="section">
+  <div class="container">
+    {% if products %}
+    <div class="products-grid">
+      {% for p in products %}
+      <div class="product-card">
+        {{ category_icon(p['category']) }}
+        <div class="product-badge">{{ p['category'] }}</div>
+        <div class="product-body">
+          <div class="product-category">{{ p['brand'] or 'Genuine' }}</div>
+          <div class="product-name">{{ p['name'] }}</div>
+          <div class="product-desc">{{ p['description'] }}</div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">{{ p['price'] or 'Ask for Price' }}</div>
+          <a href="https://wa.me/916305051742?text=Hi%2C%20I%20need%20{{ p['name']|urlencode }}%20({{ p['category']|urlencode }})%20for%20{{ brand['name']|urlencode }}" 
+             class="product-enquire" target="_blank">WhatsApp →</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-products">
+      <div style="font-size:3rem;">⚙️</div>
+      <h3 style="font-family:'Oswald',sans-serif; margin:16px 0 8px;">No Parts Displayed</h3>
+      <p>We carry a complete stock of parts for {{ brand['name'] }} at our shop. If you don't see the specific item listed, click below to enquire on WhatsApp!</p>
+      <div style="margin-top: 24px;">
+        <a href="https://wa.me/916305051742?text=Hi%20Varahi%20Automotives%2C%20I%20am%20looking%20for%20parts%20for%20{{ brand['name']|urlencode }}" class="btn btn-red" target="_blank">💬 Enquire on WhatsApp</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section style="background:var(--cream); padding:50px 0; text-align:center; border-top: 1px solid var(--border);">
+  <div class="container">
+    <h3 style="font-family:'Oswald',sans-serif; font-size:1.8rem; margin-bottom:12px;">Need Help with Spare Parts compatibility?</h3>
+    <p style="color:#666; max-width:600px; margin:0 auto 28px; line-height:1.6; font-size:0.95rem;">
+      Whether you own a Hero Splendor, Honda Activa, Bajaj Pulsar, or TVS Apache, we can help you choose the right brake wires, cables, lubricants, batteries, and tyres.
+    </p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="https://wa.me/916305051742?text=Hello%20Varahi%20Automotives%2C%20I%20need%20assistance%20with%20{{ brand['name']|urlencode }}%20parts." 
+         class="btn btn-red" target="_blank">💬 WhatsApp Support</a>
+      <a href="{{ url_for('products') }}" class="btn btn-outline-red">Browse All Products</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

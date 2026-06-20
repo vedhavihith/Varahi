@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login – Varahi Automotives</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-body">
+<div class="admin-login">
+  <div class="login-card">
+    <div style="text-align:center; margin-bottom:24px;">
+      <div style="font-size:2.5rem; color:var(--red);">⚙</div>
+      <h2>Admin Panel</h2>
+      <p>Varahi Automotives – Staff Login</p>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for cat, msg in messages %}
+    <div class="flash flash-{{ cat }}" style="margin-bottom:16px;">{{ msg }}</div>
+    {% endfor %}{% endif %}{% endwith %}
+    <form method="POST">
+      <div class="form-group"><label>Username</label><input type="text" name="username" required autofocus></div>
+      <div class="form-group"><label>Password</label><input type="password" name="password" required></div>
+      <button type="submit" class="btn btn-red" style="width:100%; margin-top:8px;">Login →</button>
+    </form>
+    <p style="text-align:center; margin-top:20px; font-size:0.8rem; color:#aaa;">
+      <a href="{{ url_for('index') }}" style="color:#aaa;">← Back to Website</a>
+    </p>
+  </div>
+</div>
+</body>
+</html>

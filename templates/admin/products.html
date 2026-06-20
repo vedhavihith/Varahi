@@ -1,0 +1,37 @@
+{% extends 'admin/base.html' %}
+{% block title %}Products{% endblock %}
+{% block content %}
+<div class="page-actions">
+  <h2>All Products</h2>
+  <a href="{{ url_for('admin_add_product') }}" class="btn btn-red">+ Add Product</a>
+</div>
+<div class="admin-card" style="padding:0; overflow:hidden;">
+  <table>
+    <thead>
+      <tr><th>#</th><th>Name</th><th>Category</th><th>Brand</th><th>Price</th><th>Status</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+    {% for p in products %}
+    <tr>
+      <td style="color:#aaa; font-size:0.8rem;">{{ p['id'] }}</td>
+      <td><strong>{{ p['name'] }}</strong><br><span style="font-size:0.78rem; color:#aaa;">{{ p['description'][:50] if p['description'] }}...</span></td>
+      <td><span class="badge badge-blue">{{ p['category'] }}</span></td>
+      <td>{{ p['brand'] or '–' }}</td>
+      <td style="font-family:'Oswald',sans-serif; color:var(--red);">{{ p['price'] or '–' }}</td>
+      <td>
+        {% if p['available'] %}<span class="badge badge-green">Active</span>
+        {% else %}<span class="badge badge-red">Hidden</span>{% endif %}
+      </td>
+      <td>
+        <div class="action-btns">
+          <a href="{{ url_for('admin_edit_product', pid=p['id']) }}" class="btn btn-sm btn-sm-outline">Edit</a>
+          <a href="{{ url_for('admin_delete_product', pid=p['id']) }}" class="btn btn-sm btn-sm-danger"
+             onclick="return confirm('Delete this product?')">Del</a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

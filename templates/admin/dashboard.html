@@ -1,0 +1,56 @@
+{% extends 'admin/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-actions" style="margin-bottom:24px;">
+  <h2>Dashboard</h2>
+  <span style="color:#888; font-size:0.9rem;">Welcome back, Admin</span>
+</div>
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="num">{{ product_count }}</div>
+    <div class="label">Total Products</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">{{ inquiry_count }}</div>
+    <div class="label">Total Inquiries</div>
+  </div>
+  <div class="stat-card {% if unread > 0 %}alert{% endif %}">
+    <div class="num">{{ unread }}</div>
+    <div class="label">Unread Inquiries</div>
+  </div>
+</div>
+<div class="admin-card">
+  <div class="page-actions">
+    <h2>Recent Inquiries</h2>
+    <a href="{{ url_for('admin_inquiries') }}" class="btn btn-sm btn-sm-outline">View All</a>
+  </div>
+  {% if recent_inquiries %}
+  <table>
+    <thead><tr><th>Name</th><th>Phone</th><th>Vehicle</th><th>Message</th><th>Date</th></tr></thead>
+    <tbody>
+    {% for inq in recent_inquiries %}
+    <tr>
+      <td><strong>{{ inq['name'] }}</strong></td>
+      <td><a href="tel:{{ inq['phone'] }}">{{ inq['phone'] }}</a></td>
+      <td>{{ inq['vehicle'] or '–' }}</td>
+      <td style="max-width:260px; font-size:0.85rem; color:#555;">{{ inq['message'][:80] }}{% if inq['message'] and inq['message']|length > 80 %}...{% endif %}</td>
+      <td style="font-size:0.82rem; color:#888;">{{ inq['created_at'][:16] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#aaa; text-align:center; padding:32px;">No inquiries yet.</p>
+  {% endif %}
+</div>
+<div class="admin-card">
+  <div class="page-actions">
+    <h2>Quick Actions</h2>
+  </div>
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <a href="{{ url_for('admin_add_product') }}" class="btn btn-red">+ Add Product</a>
+    <a href="{{ url_for('admin_products') }}" class="btn btn-outline-red">Manage Products</a>
+    <a href="{{ url_for('admin_inquiries') }}" class="btn btn-outline-red">View All Inquiries</a>
+  </div>
+</div>
+{% endblock %}

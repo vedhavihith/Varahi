@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Admin{% endblock %} – Varahi Automotives</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-body">
+<nav class="admin-nav">
+  <div class="container admin-nav-inner">
+    <h1>⚙ Varahi Admin</h1>
+    <div class="admin-nav-links">
+      <a href="{{ url_for('admin_dashboard') }}" {% if request.endpoint=='admin_dashboard' %}class="active"{% endif %}>Dashboard</a>
+      <a href="{{ url_for('admin_products') }}" {% if 'product' in request.endpoint %}class="active"{% endif %}>Products</a>
+      <a href="{{ url_for('admin_inquiries') }}" {% if request.endpoint=='admin_inquiries' %}class="active"{% endif %}>Inquiries</a>
+      <a href="{{ url_for('index') }}" target="_blank">View Site ↗</a>
+      <a href="{{ url_for('admin_logout') }}" style="color:#ff6b6b;">Logout</a>
+    </div>
+  </div>
+</nav>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="container" style="margin-top:16px;">
+{% for cat, msg in messages %}
+<div class="flash flash-{{ cat }}">{{ msg }} <span class="flash-close" onclick="this.parentElement.remove()">✕</span></div>
+{% endfor %}
+</div>
+{% endif %}{% endwith %}
+<div class="admin-main"><div class="container">{% block content %}{% endblock %}</div></div>
+</body>
+</html>

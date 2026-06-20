@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% from 'products.html' import category_icon %}
+{% block title %}Varahi Automotives – Two-Wheeler Spare Parts & Lubricants, Ramagundam{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content animate-fade-in-up">
+      <div class="hero-eyebrow">NTPC Godavarikhani • Ramagundam</div>
+      <h1>Genuine Parts.<br>Every <span>Ride.</span><br>Every Brand.</h1>
+      <p class="hero-desc">Varahi Automotives is your one-stop destination for genuine two-wheeler spare parts, lubricants, batteries, and tyres for Hero, Honda, Bajaj, and TVS vehicles.</p>
+      <div class="hero-btns animate-fade-in-up delay-1">
+        <a href="{{ url_for('products') }}" class="btn btn-white">Browse Products</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-outline-white">Send Inquiry</a>
+      </div>
+      <div class="hero-stats animate-fade-in-up delay-2">
+        <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Brands Covered</div></div>
+        <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Parts Available</div></div>
+        <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Genuine Parts</div></div>
+      </div>
+    </div>
+    <div class="hero-visual animate-fade-in-up delay-1">
+      <div class="brand-grid">
+        <a href="{{ url_for('brand_detail', brand_name='Hero') }}" class="brand-card" style="text-decoration:none; display:flex; justify-content:center; align-items:center; min-height:80px; transition:all 0.2s;">
+          <img src="{{ url_for('static', filename='images/hero-logo.png') }}" alt="Hero" style="height:48px; object-fit:contain; width:100%;">
+        </a>
+        <a href="{{ url_for('brand_detail', brand_name='Honda') }}" class="brand-card" style="text-decoration:none; display:flex; justify-content:center; align-items:center; min-height:80px; transition:all 0.2s;">
+          <img src="{{ url_for('static', filename='images/honda-logo.png') }}" alt="Honda" style="height:48px; object-fit:contain; width:100%;">
+        </a>
+        <a href="{{ url_for('brand_detail', brand_name='Bajaj') }}" class="brand-card" style="text-decoration:none; display:flex; justify-content:center; align-items:center; min-height:80px; transition:all 0.2s;">
+          <img src="{{ url_for('static', filename='images/bajaj-logo.png') }}" alt="Bajaj" style="height:48px; object-fit:contain; width:100%;">
+        </a>
+        <a href="{{ url_for('brand_detail', brand_name='TVS') }}" class="brand-card" style="text-decoration:none; display:flex; justify-content:center; align-items:center; min-height:80px; transition:all 0.2s;">
+          <img src="{{ url_for('static', filename='images/tvs-logo.png') }}" alt="TVS" style="height:48px; object-fit:contain; width:100%;">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS STRIP -->
+<div class="brands-strip">
+  <div class="container brands-inner">
+    <a href="{{ url_for('brand_detail', brand_name='Hero') }}" style="text-decoration:none;"><span class="brand-pill">HERO</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='Honda') }}" style="text-decoration:none;"><span class="brand-pill">HONDA</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='Bajaj') }}" style="text-decoration:none;"><span class="brand-pill">BAJAJ</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='TVS') }}" style="text-decoration:none;"><span class="brand-pill">TVS</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='Castrol') }}" style="text-decoration:none;"><span class="brand-pill">CASTROL</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='Motul') }}" style="text-decoration:none;"><span class="brand-pill">MOTUL</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='Gulf') }}" style="text-decoration:none;"><span class="brand-pill">GULF</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='Exide') }}" style="text-decoration:none;"><span class="brand-pill">EXIDE</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='Amaron') }}" style="text-decoration:none;"><span class="brand-pill">AMARON</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='MRF') }}" style="text-decoration:none;"><span class="brand-pill">MRF</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='CEAT') }}" style="text-decoration:none;"><span class="brand-pill">CEAT</span></a>
+    <a href="{{ url_for('brand_detail', brand_name='NGK') }}" style="text-decoration:none;"><span class="brand-pill">NGK</span></a>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">What We Stock</div>
+      <h2>Shop by Category</h2>
+      <p>We carry genuine parts across all major categories to keep your two-wheeler running perfectly.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="category-grid">
+      <a href="{{ url_for('products', category='Lubricants') }}" class="cat-card">
+        <span class="cat-icon">🛢</span>
+        <h3>Engine Oils & Lubricants</h3>
+        <p>Castrol, Motul, Gulf & more for smooth engine performance</p>
+        <span class="cat-count">4+ Products</span>
+      </a>
+      <a href="{{ url_for('products', category='Spare Parts') }}" class="cat-card">
+        <span class="cat-icon">⚙️</span>
+        <h3>Spare Parts</h3>
+        <p>Brake pads, clutch plates, spark plugs, filters & more</p>
+        <span class="cat-count">10+ Products</span>
+      </a>
+      <a href="{{ url_for('products', category='Batteries') }}" class="cat-card">
+        <span class="cat-icon">🔋</span>
+        <h3>Batteries</h3>
+        <p>Exide & Amaron high-performance bike batteries</p>
+        <span class="cat-count">2+ Products</span>
+      </a>
+      <a href="{{ url_for('products', category='Tyres') }}" class="cat-card">
+        <span class="cat-icon">🔘</span>
+        <h3>Tyres</h3>
+        <p>MRF, CEAT & other brands for bikes and scooters</p>
+        <span class="cat-count">5+ Products</span>
+      </a>
+      <a href="{{ url_for('products', category='Electrical') }}" class="cat-card">
+        <span class="cat-icon">💡</span>
+        <h3>Electrical Parts</h3>
+        <p>Bulbs, indicators, wiring & electrical components</p>
+        <span class="cat-count">5+ Products</span>
+      </a>
+      <a href="{{ url_for('products', category='Accessories') }}" class="cat-card">
+        <span class="cat-icon">🪖</span>
+        <h3>Accessories</h3>
+        <p>Mirrors, grips, covers & riding essentials</p>
+        <span class="cat-count">5+ Products</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Popular Items</div>
+      <h2>Featured Products</h2>
+      <p>Top-selling genuine parts and lubricants from trusted brands.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="products-grid">
+      {% for p in featured %}
+      <div class="product-card">
+        {{ category_icon(p['category']) }}
+        <div class="product-badge">{{ p['category'] }}</div>
+        <div class="product-body">
+          <div class="product-category">{{ p['brand'] or 'Genuine' }}</div>
+          <div class="product-name">{{ p['name'] }}</div>
+          <div class="product-desc">{{ p['description'] }}</div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">{{ p['price'] or 'Enquire' }}</div>
+          <a href="https://wa.me/916305051742?text=Hi%2C%20I%20need%20{{ p['name']|urlencode }}" class="product-enquire" target="_blank">Enquire →</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="{{ url_for('products') }}" class="btn btn-red">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Why Us</div>
+      <h2>Why Choose Varahi Automotives?</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-icon">✅</span>
+        <h4>100% Genuine Parts</h4>
+        <p>We stock only authentic, OEM-quality spare parts directly from trusted distributors.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🏪</span>
+        <h4>Multi-Brand Stock</h4>
+        <p>Parts for Hero, Honda, Bajaj, and TVS — all under one roof.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">💰</span>
+        <h4>Fair Pricing</h4>
+        <p>Competitive prices with no hidden charges. Quality parts that fit your budget.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">📍</span>
+        <h4>Conveniently Located</h4>
+        <p>Beside Vishal Mart, HP Petrol Pump, NTPC Godavarikhani — easy to find.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<style>
+  .faq-question:hover { color: var(--red) !important; }
+  .faq-item.active .faq-question { color: var(--red); }
+</style>
+<section class="section">
+  <div class="container" style="max-width: 800px;">
+    <div class="section-header">
+      <div class="section-eyebrow">Got Questions?</div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="divider"></div>
+    </div>
+    
+    <div class="faq-list" style="margin-top: 36px;">
+      
+      <div class="faq-item" style="border-bottom: 1px solid var(--border); padding: 18px 0;">
+        <button class="faq-question" style="background: none; border: none; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; font-size: 1.15rem; font-weight: 600; font-family: 'Oswald', sans-serif; color: var(--steel); cursor: pointer; padding: 10px 0; outline: none; transition: color 0.2s;">
+          <span>Are the parts you sell 100% genuine?</span>
+          <span class="faq-icon" style="font-size: 1.2rem; font-family: monospace; transition: transform 0.3s;">+</span>
+        </button>
+        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), padding 0.3s ease; color: var(--steel-light); font-size: 0.92rem; line-height: 1.6;">
+          <div style="padding-top: 10px;">
+            Yes, absolutely. Varahi Automotives only stocks 100% authentic, OEM-quality spare parts and premium lubricants. We source all our items directly from authorized national distributors for Hero, Honda, TVS, Bajaj, Castrol, Motul, Exide, and Amaron.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom: 1px solid var(--border); padding: 18px 0;">
+        <button class="faq-question" style="background: none; border: none; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; font-size: 1.15rem; font-weight: 600; font-family: 'Oswald', sans-serif; color: var(--steel); cursor: pointer; padding: 10px 0; outline: none; transition: color 0.2s;">
+          <span>Can I order a part if it is not currently in stock?</span>
+          <span class="faq-icon" style="font-size: 1.2rem; font-family: monospace; transition: transform 0.3s;">+</span>
+        </button>
+        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), padding 0.3s ease; color: var(--steel-light); font-size: 0.92rem; line-height: 1.6;">
+          <div style="padding-top: 10px;">
+            Yes, we offer custom sourcing. If you need a specific brake cable, electrical component, engine part, or battery that is not listed in our catalog, simply send us a message on WhatsApp with your vehicle model and part description. We can typically source it for you within 24 to 48 hours.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom: 1px solid var(--border); padding: 18px 0;">
+        <button class="faq-question" style="background: none; border: none; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; font-size: 1.15rem; font-weight: 600; font-family: 'Oswald', sans-serif; color: var(--steel); cursor: pointer; padding: 10px 0; outline: none; transition: color 0.2s;">
+          <span>Do you provide fitting or mechanic services at your store?</span>
+          <span class="faq-icon" style="font-size: 1.2rem; font-family: monospace; transition: transform 0.3s;">+</span>
+        </button>
+        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), padding 0.3s ease; color: var(--steel-light); font-size: 0.92rem; line-height: 1.6;">
+          <div style="padding-top: 10px;">
+            We are primarily a retail distributor of genuine spare parts and lubricants. While we do not perform in-store installations ourselves, we partner with and can recommend highly experienced local mechanics located right beside our shop to assist you with quick parts fitting and maintenance.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom: 1px solid var(--border); padding: 18px 0;">
+        <button class="faq-question" style="background: none; border: none; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; font-size: 1.15rem; font-weight: 600; font-family: 'Oswald', sans-serif; color: var(--steel); cursor: pointer; padding: 10px 0; outline: none; transition: color 0.2s;">
+          <span>Which payment methods do you accept at the shop?</span>
+          <span class="faq-icon" style="font-size: 1.2rem; font-family: monospace; transition: transform 0.3s;">+</span>
+        </button>
+        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), padding 0.3s ease; color: var(--steel-light); font-size: 0.92rem; line-height: 1.6;">
+          <div style="padding-top: 10px;">
+            We accept a wide range of payment options for your convenience, including Cash, UPI transfers (Google Pay, PhonePe, Paytm), and all major Debit/Credit cards.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Accordion JS Script -->
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = faqItem.querySelector('.faq-icon');
+      const isExpanded = faqItem.classList.contains('active');
+      
+      // Close all other active FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        item.querySelector('.faq-answer').style.maxHeight = null;
+        item.querySelector('.faq-icon').textContent = '+';
+        item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+      });
+
+      if (!isExpanded) {
+        faqItem.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.textContent = '−';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>
+
+<!-- CTA BANNER -->
+<section style="background: linear-gradient(135deg, var(--red-dark), var(--red)); padding: 56px 0; text-align: center; color: white;">
+  <div class="container">
+    <h2 style="font-family: 'Oswald', sans-serif; font-size: 2rem; margin-bottom: 12px;">Can't Find the Part You Need?</h2>
+    <p style="opacity: 0.85; margin-bottom: 28px;">Send us a WhatsApp message and we'll help you find the right part for your bike.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://wa.me/916305051742?text=Hello%20Varahi%20Automotives%2C%20I%20am%20looking%20for%20a%20spare%20part." class="btn btn-white" target="_blank">💬 WhatsApp Now</a>
+      <a href="tel:6305051742" class="btn btn-outline-white">📞 Call Us</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'admin/base.html' %}
+{% block title %}{{ 'Edit' if product else 'Add' }} Product{% endblock %}
+{% block content %}
+<div class="page-actions">
+  <h2>{{ 'Edit Product' if product else 'Add New Product' }}</h2>
+  <a href="{{ url_for('admin_products') }}" class="btn btn-sm btn-sm-outline">← Back</a>
+</div>
+<div class="admin-card" style="max-width:680px;">
+  <form method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Product Name *</label>
+        <input type="text" name="name" value="{{ product['name'] if product else '' }}" required>
+      </div>
+      <div class="form-group">
+        <label>Brand</label>
+        <input type="text" name="brand" value="{{ product['brand'] if product else '' }}" placeholder="e.g. Castrol">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Category *</label>
+        <select name="category" required>
+          {% for cat in ['Lubricants','Spare Parts','Batteries','Tyres','Electrical','Accessories'] %}
+          <option value="{{ cat }}" {% if product and product['category']==cat %}selected{% endif %}>{{ cat }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Price (e.g. ₹350)</label>
+        <input type="text" name="price" value="{{ product['price'] if product else '' }}" placeholder="e.g. ₹350">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea name="description">{{ product['description'] if product else '' }}</textarea>
+    </div>
+    <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+      <input type="checkbox" name="available" id="available" style="width:auto;" {% if not product or product['available'] %}checked{% endif %}>
+      <label for="available" style="text-transform:none; letter-spacing:0; font-size:0.9rem; margin-bottom:0;">Show on website (Active)</label>
+    </div>
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <button type="submit" class="btn btn-red">{{ 'Save Changes' if product else 'Add Product' }}</button>
+      <a href="{{ url_for('admin_products') }}" class="btn btn-outline-red">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

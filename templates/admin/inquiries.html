@@ -1,0 +1,37 @@
+{% extends 'admin/base.html' %}
+{% block title %}Inquiries{% endblock %}
+{% block content %}
+<div class="page-actions">
+  <h2>Customer Inquiries</h2>
+  <span style="color:#888; font-size:0.9rem;">{{ inquiries|length }} total</span>
+</div>
+<div class="admin-card" style="padding:0; overflow:hidden;">
+  {% if inquiries %}
+  <table>
+    <thead>
+      <tr><th>#</th><th>Name</th><th>Phone</th><th>Vehicle</th><th>Message</th><th>Date</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+    {% for inq in inquiries %}
+    <tr>
+      <td style="color:#aaa; font-size:0.8rem;">{{ inq['id'] }}</td>
+      <td><strong>{{ inq['name'] }}</strong></td>
+      <td>
+        <a href="tel:{{ inq['phone'] }}" style="color:var(--red); font-weight:500;">{{ inq['phone'] }}</a>
+      </td>
+      <td style="font-size:0.85rem;">{{ inq['vehicle'] or '–' }}</td>
+      <td style="font-size:0.85rem; max-width:280px; color:#444;">{{ inq['message'] or '–' }}</td>
+      <td style="font-size:0.8rem; color:#888; white-space:nowrap;">{{ inq['created_at'][:16] }}</td>
+      <td>
+        <a href="https://wa.me/91{{ inq['phone'] }}?text=Hello%20{{ inq['name']|urlencode }}%2C%20this%20is%20Varahi%20Automotives%20regarding%20your%20inquiry." 
+           class="btn btn-sm" style="background:#25D366; color:white;" target="_blank">WhatsApp</a>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="text-align:center; padding:48px; color:#aaa;">No inquiries received yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

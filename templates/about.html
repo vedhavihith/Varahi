@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}About Us – Varahi Automotives{% endblock %}
+{% block content %}
+
+<div class="about-hero">
+  <div class="container">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.7)">Who We Are</div>
+    <h1>About Varahi Automotives</h1>
+    <p>Ramagundam's trusted multi-brand two-wheeler spare parts & lubricants shop.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="mission-card">
+        <h3>🎯 Our Mission</h3>
+        <p>To provide every two-wheeler owner with access to genuine, durable, and affordable spare parts, ensuring safety, performance, and complete customer satisfaction. We believe every rider deserves quality parts at fair prices.</p>
+      </div>
+      <div class="mission-card">
+        <h3>🌟 Our Vision</h3>
+        <p>To become the most trusted multi-brand two-wheeler spare parts hub in the region, delivering excellence in service and quality products across all major brands — Hero, Honda, Bajaj, and TVS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">What We Offer</div>
+      <h2>Our Services</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="icon">⚙️</div>
+        <h4>Two-Wheeler Spare Parts</h4>
+        <p>Genuine parts for Hero, Honda, Bajaj, TVS, and other leading brands — brake pads, clutch plates, spark plugs, chains, filters and more.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🛢</div>
+        <h4>Engine Oils & Lubricants</h4>
+        <p>Premium-grade oils from Castrol, Motul, Gulf and more to keep your bike running smoothly and extend engine life.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🔘</div>
+        <h4>Two-Wheeler Tyres</h4>
+        <p>High-quality, durable tyres from MRF, CEAT and other trusted brands designed for maximum grip, safety, and comfort.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🔋</div>
+        <h4>Bike Batteries</h4>
+        <p>High-performance, long-lasting batteries from Exide and Amaron for all types of two-wheelers — bikes and scooters alike.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">💡</div>
+        <h4>Electrical Components</h4>
+        <p>Bulbs, indicators, switches, and other electrical parts to keep your bike's lighting and wiring in top condition.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🪖</div>
+        <h4>Accessories</h4>
+        <p>Mirrors, handlebar grips, bike covers, and other riding accessories for convenience and protection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Brands We Trust</div>
+      <h2>Authorized Multi-Brand Dealer</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center; align-items:center;">
+      <a href="{{ url_for('brand_detail', brand_name='Hero') }}" style="text-decoration:none; display:flex; align-items:center; justify-content:center; background:white; border:1px solid var(--border); border-radius:10px; padding:20px; transition:all 0.2s;">
+        <img src="{{ url_for('static', filename='images/hero-logo.png') }}" alt="Hero" style="height:50px; object-fit:contain; max-width:140px;">
+      </a>
+      <a href="{{ url_for('brand_detail', brand_name='Honda') }}" style="text-decoration:none; display:flex; align-items:center; justify-content:center; background:white; border:1px solid var(--border); border-radius:10px; padding:20px; transition:all 0.2s;">
+        <img src="{{ url_for('static', filename='images/honda-logo.png') }}" alt="Honda" style="height:50px; object-fit:contain; max-width:140px;">
+      </a>
+      <a href="{{ url_for('brand_detail', brand_name='Bajaj') }}" style="text-decoration:none; display:flex; align-items:center; justify-content:center; background:white; border:1px solid var(--border); border-radius:10px; padding:20px; transition:all 0.2s;">
+        <img src="{{ url_for('static', filename='images/bajaj-logo.png') }}" alt="Bajaj" style="height:50px; object-fit:contain; max-width:140px;">
+      </a>
+      <a href="{{ url_for('brand_detail', brand_name='TVS') }}" style="text-decoration:none; display:flex; align-items:center; justify-content:center; background:white; border:1px solid var(--border); border-radius:10px; padding:20px; transition:all 0.2s;">
+        <img src="{{ url_for('static', filename='images/tvs-logo.png') }}" alt="TVS" style="height:50px; object-fit:contain; max-width:140px;">
+      </a>
+      {% for brand in ['Castrol','Motul','Gulf','Exide','Amaron','MRF','CEAT','NGK'] %}
+      <a href="{{ url_for('brand_detail', brand_name=brand) }}" style="text-decoration:none; display:block; background:var(--cream); border:1px solid var(--border); border-radius:8px; padding:20px 10px; transition:all 0.2s;">
+        <div style="font-family:'Oswald',sans-serif; font-size:1.1rem; font-weight:600; letter-spacing:1px; color:#1a1a1a;">{{ brand }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="background:#1a1a1a; padding:56px 0; color:white; text-align:center;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:32px;">
+      <div><div style="font-family:'Oswald',sans-serif; font-size:2.5rem; color:#FFD700;">4+</div><div style="opacity:0.7; font-size:0.85rem; margin-top:4px;">Vehicle Brands</div></div>
+      <div><div style="font-family:'Oswald',sans-serif; font-size:2.5rem; color:#FFD700;">500+</div><div style="opacity:0.7; font-size:0.85rem; margin-top:4px;">Parts in Stock</div></div>
+      <div><div style="font-family:'Oswald',sans-serif; font-size:2.5rem; color:#FFD700;">10+</div><div style="opacity:0.7; font-size:0.85rem; margin-top:4px;">Product Brands</div></div>
+      <div><div style="font-family:'Oswald',sans-serif; font-size:2.5rem; color:#FFD700;">100%</div><div style="opacity:0.7; font-size:0.85rem; margin-top:4px;">Genuine Parts</div></div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
