@@ -120,7 +120,7 @@
     <div class="products-grid">
       {% for p in featured %}
       <div class="product-card">
-        {{ category_icon(p['category']) }}
+        {{ category_icon(p['category'], p['image_url'], p['name']) }}
         <div class="product-badge">{{ p['category'] }}</div>
         <div class="product-body">
           <div class="product-category">{{ p['brand'] or 'Genuine' }}</div>

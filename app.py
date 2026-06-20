@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 import sqlite3
 import os
+import uuid
 from datetime import datetime
 from functools import wraps
 
@@ -8,6 +9,12 @@ app = Flask(__name__)
 app.secret_key = 'varahi_automotives_secret_2024'
 
 DB_PATH = 'varahi.db'
+UPLOAD_FOLDER = os.path.join('static', 'uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB Max upload limit
+
+# Ensure the upload directory exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 BRANDS_INFO = {
     'hero': {
@@ -125,8 +132,15 @@ def init_db():
         description TEXT,
         price TEXT,
         available INTEGER DEFAULT 1,
+        image_url TEXT,
         created_at TEXT DEFAULT CURRENT_TIMESTAMP
     )''')
+    
+    # Migration to check if image_url column exists and add it if not
+    c.execute("PRAGMA table_info(products)")
+    columns = [row[1] for row in c.fetchall()]
+    if 'image_url' not in columns:
+        c.execute("ALTER TABLE products ADD COLUMN image_url TEXT")
     
     c.execute('''CREATE TABLE IF NOT EXISTS inquiries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -376,11 +390,22 @@ def admin_products():
 @login_required
 def admin_add_product():
     if request.method == 'POST':
+        image_file = request.files.get('image')
+        image_url = None
+        if image_file and image_file.filename != '':
+            ext = os.path.splitext(image_file.filename)[1].lower()
+            if ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
+                filename = f"{uuid.uuid4()}{ext}"
+                image_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                image_url = filename
+            else:
+                flash('Invalid image format. Allowed: jpg, jpeg, png, gif, webp', 'error')
+        
         conn = get_db()
         conn.execute(
-            "INSERT INTO products (name, category, brand, description, price, available) VALUES (?,?,?,?,?,?)",
+            "INSERT INTO products (name, category, brand, description, price, available, image_url) VALUES (?,?,?,?,?,?,?)",
             (request.form['name'], request.form['category'], request.form['brand'],
-             request.form['description'], request.form['price'], 1 if request.form.get('available') else 0)
+             request.form['description'], request.form['price'], 1 if request.form.get('available') else 0, image_url)
         )
         conn.commit()
         conn.close()
@@ -392,18 +417,49 @@ def admin_add_product():
 @login_required
 def admin_edit_product(pid):
     conn = get_db()
+    product = conn.execute("SELECT * FROM products WHERE id=?", (pid,)).fetchone()
     if request.method == 'POST':
+        image_file = request.files.get('image')
+        image_url = product['image_url']
+        
+        if image_file and image_file.filename != '':
+            ext = os.path.splitext(image_file.filename)[1].lower()
+            if ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
+                # Delete old image if it exists
+                if image_url:
+                    old_path = os.path.join(app.config['UPLOAD_FOLDER'], image_url)
+                    if os.path.exists(old_path):
+                        try:
+                            os.remove(old_path)
+                        except Exception as e:
+                            print(f"Error removing old image: {e}")
+                
+                filename = f"{uuid.uuid4()}{ext}"
+                image_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                image_url = filename
+            else:
+                flash('Invalid image format. Allowed: jpg, jpeg, png, gif, webp', 'error')
+        
+        if request.form.get('remove_image'):
+            if image_url:
+                old_path = os.path.join(app.config['UPLOAD_FOLDER'], image_url)
+                if os.path.exists(old_path):
+                    try:
+                        os.remove(old_path)
+                    except Exception as e:
+                        print(f"Error removing image: {e}")
+            image_url = None
+            
         conn.execute(
-            "UPDATE products SET name=?, category=?, brand=?, description=?, price=?, available=? WHERE id=?",
+            "UPDATE products SET name=?, category=?, brand=?, description=?, price=?, available=?, image_url=? WHERE id=?",
             (request.form['name'], request.form['category'], request.form['brand'],
              request.form['description'], request.form['price'],
-             1 if request.form.get('available') else 0, pid)
+             1 if request.form.get('available') else 0, image_url, pid)
         )
         conn.commit()
         conn.close()
         flash('Product updated!', 'success')
         return redirect(url_for('admin_products'))
-    product = conn.execute("SELECT * FROM products WHERE id=?", (pid,)).fetchone()
     conn.close()
     return render_template('admin/product_form.html', product=product)
 
@@ -411,6 +467,14 @@ def admin_edit_product(pid):
 @login_required
 def admin_delete_product(pid):
     conn = get_db()
+    product = conn.execute("SELECT image_url FROM products WHERE id=?", (pid,)).fetchone()
+    if product and product['image_url']:
+        old_path = os.path.join(app.config['UPLOAD_FOLDER'], product['image_url'])
+        if os.path.exists(old_path):
+            try:
+                os.remove(old_path)
+            except Exception as e:
+                print(f"Error removing deleted product image: {e}")
     conn.execute("DELETE FROM products WHERE id=?", (pid,))
     conn.commit()
     conn.close()

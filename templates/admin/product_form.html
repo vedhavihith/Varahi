@@ -6,7 +6,7 @@
   <a href="{{ url_for('admin_products') }}" class="btn btn-sm btn-sm-outline">← Back</a>
 </div>
 <div class="admin-card" style="max-width:680px;">
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     <div class="form-row">
       <div class="form-group">
         <label>Product Name *</label>
@@ -35,6 +35,24 @@
       <label>Description</label>
       <textarea name="description">{{ product['description'] if product else '' }}</textarea>
     </div>
+    
+    <div class="form-group" style="margin-bottom: 20px;">
+      <label>Product Image</label>
+      {% if product and product['image_url'] %}
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px; background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
+        <img src="{{ url_for('static', filename='uploads/' + product['image_url']) }}" alt="{{ product['name'] }}" style="height: 64px; width: 64px; object-fit: contain; background: white; border-radius: 6px; border: 1px solid var(--border);">
+        <div>
+          <span style="font-size: 0.8rem; color: var(--steel-light); display: block; margin-bottom: 6px; font-family: monospace;">{{ product['image_url'] }}</span>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--red); cursor: pointer; text-transform: none; font-weight: normal; margin-bottom: 0;">
+            <input type="checkbox" name="remove_image" value="1" style="width: auto;"> Remove current image
+          </label>
+        </div>
+      </div>
+      {% endif %}
+      <input type="file" name="image" accept="image/*" style="border: 1.5px dashed var(--border); padding: 12px; border-radius: 8px; width: 100%; cursor: pointer;">
+      <span style="font-size: 0.75rem; color: var(--steel-light); display: block; margin-top: 6px;">Supported formats: JPG, JPEG, PNG, GIF, WEBP (Max 5MB)</span>
+    </div>
+
     <div class="form-group" style="display:flex; align-items:center; gap:10px;">
       <input type="checkbox" name="available" id="available" style="width:auto;" {% if not product or product['available'] %}checked{% endif %}>
       <label for="available" style="text-transform:none; letter-spacing:0; font-size:0.9rem; margin-bottom:0;">Show on website (Active)</label>

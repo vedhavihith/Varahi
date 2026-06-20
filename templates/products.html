@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Products – Varahi Automotives{% endblock %}
 
-{% macro category_icon(category) %}
+{% macro category_icon(category, image_url=None, name=None) %}
+{% if image_url %}
+<div class="product-card-visual" style="height: 140px; background: white; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 1px solid var(--border);">
+  <img src="{{ url_for('static', filename='uploads/' + image_url) }}" alt="{{ name or 'Product Image' }}" style="max-height: 130px; max-width: 90%; object-fit: contain;">
+</div>
+{% else %}
 <div class="product-card-visual" style="height: 140px; background: linear-gradient(135deg, #2A2D34 0%, #1F2026 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 1px solid var(--border);">
   <div style="position: absolute; inset: 0; opacity: 0.05; background: radial-gradient(#fff 1px, transparent 1px); background-size: 16px 16px;"></div>
   
@@ -79,6 +84,7 @@
   </svg>
   {% endif %}
 </div>
+{% endif %}
 {% endmacro %}
 
 {% block content %}
@@ -149,7 +155,7 @@
     <div class="products-grid">
       {% for p in products %}
       <div class="product-card">
-        {{ category_icon(p['category']) }}
+        {{ category_icon(p['category'], p['image_url'], p['name']) }}
         <div class="product-badge">{{ p['category'] }}</div>
         <div class="product-body">
           <div class="product-category">{{ p['brand'] or 'Genuine' }}</div>
