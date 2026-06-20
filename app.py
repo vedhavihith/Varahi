@@ -427,6 +427,8 @@ def admin_inquiries():
     conn.close()
     return render_template('admin/inquiries.html', inquiries=inquiries)
 
+# Initialize the database on startup (runs locally and under Gunicorn/WSGI production)
+init_db()
+
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True, port=5000)
